@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-function Drawer() {
+function Drawer({ onClose, cartItems = [] }) {
   return (
-    <div style={{ display: 'none' }} className="overlay">
+    <div className="overlay">
       <div className="drawer">
         <h2 className="d-flex justify-between mb-20">
           Кошик
@@ -12,37 +15,32 @@ function Drawer() {
             height={32}
             src="img/btn-remuve.svg"
             alt="remuve"
+            onClick={onClose}
           />
         </h2>
         <div className="cartItems">
-          <div className="cartItem d-flex align-center ">
-            <img className="mr-20" width={70} height={70} src="img/sneakers/1.jpg" alt="Sneakers" />
-            <div className="mr-10">
-              <p>Чоловічі кросівки Nike Blazer Mid Suede</p>
-              <b>2999 грн</b>
+          {cartItems.map((obj) => (
+            <div className="cartItem d-flex align-center ">
+              <img
+                className="mr-20"
+                width={70}
+                height={70}
+                src={obj.imageUrl}
+                alt="Sneakers"
+              />
+              <div className="mr-10">
+                <p>{obj.title}</p>
+                <b>{obj.price}</b>
+              </div>
+              <img
+                className="remuveBtn"
+                width={32}
+                height={32}
+                src="img/btn-remuve.svg"
+                alt="remuve"
+              />
             </div>
-            <img
-              className="remuveBtn"
-              width={32}
-              height={32}
-              src="img/btn-remuve.svg"
-              alt="remuve"
-            />
-          </div>
-          <div className="cartItem d-flex align-center ">
-            <img className="mr-20" width={70} height={70} src="img/sneakers/1.jpg" alt="Sneakers" />
-            <div className="mr-10">
-              <p>Чоловічі кросівки Nike Blazer Mid Suede</p>
-              <b>2999 грн</b>
-            </div>
-            <img
-              className="remuveBtn"
-              width={32}
-              height={32}
-              src="img/btn-remuve.svg"
-              alt="remuve"
-            />
-          </div>
+          ))}
         </div>
         <div className="cartTotalBlock">
           <ul>
